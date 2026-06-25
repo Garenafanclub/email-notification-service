@@ -1,0 +1,20 @@
+server:
+  port: 8083 # The unified front door
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: employee-management-route
+            uri: http://localhost:8081
+            predicates:
+              - Path=/api/v1/employees/**
+              -
+          - id: email-notification-route
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/v1/notifications/**
