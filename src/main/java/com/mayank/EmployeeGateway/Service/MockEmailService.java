@@ -1,7 +1,6 @@
 package com.mayank.EmployeeGateway.Service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 
 @Service
 public class MockEmailService {
