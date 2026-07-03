@@ -17,22 +17,13 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	set('springCloudVersion', "2025.1.2")
-}
-
 dependencies {
+	// Plain web — this is a simple REST notification receiver, NOT a gateway
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.cloud:spring-cloud-starter-gateway-server-webmvc'
-//	implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
-	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
