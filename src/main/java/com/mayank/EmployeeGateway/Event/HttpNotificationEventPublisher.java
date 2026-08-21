@@ -10,6 +10,9 @@ public class HttpNotificationEventPublisher implements NotificationEventPublishe
 
     private final RestClient restClient;
 
+    @Value("${webhook.secret}")
+    private String webhookSecret;
+
     @Value(("${employee.notification.completion-webhook.url}"))
     private String completionWebhookURL;
 
@@ -27,6 +30,7 @@ public class HttpNotificationEventPublisher implements NotificationEventPublishe
             ResponseEntity<Void> response = restClient.post()
                     .uri(completionWebhookURL)
                     .header("Content-Type", "application/json")
+                    .header("X-Webhook-Secret", webhookSecret)
                     .body(event)
                     .retrieve()
                     .toBodilessEntity();

@@ -1,6 +1,3 @@
-server:
-  port: 8083
-
 spring:
   application:
     name: notification-service
@@ -11,7 +8,13 @@ management:
       exposure:
         include: health, info
 
+server:
+  port: 8083
+
 employee:
   notification:
     completion-webhook:
       url: http://localhost:8081/api/v1/webhooks/notification-completed
+
+webhook:
+  secret: ${WEBHOOK_SECRET:my-local-webhook-secret}
